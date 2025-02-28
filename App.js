@@ -21,7 +21,7 @@ export default function App() {
 
 function TabNavigable() {
   return (
-     <Tab.Navigator initialRouteName="Accueil" >
+     <Tab.Navigator initialRouteName="Accueil">
         <Tab.Screen name='Accueil'
                     component={Accueil} 
                     options={{title: 'Accueil',
@@ -38,14 +38,15 @@ function TabNavigable() {
         <Tab.Screen name="MaMap"
                     component={MaMapQuiZoomSurGaspe}
                     options={{title: 'Ma Map sur Gaspé',
-                      tabBarIcon: ({size, focused, color}) => {
-                        return (
-                          <Image
-                            style={{ width: size, height: size }}
-                            source={require('./assets/map.png')}
-                          />
-                        );
-                      }, }} 
+                              tabBarIcon: ({size, focused, color}) => {
+                                return (
+                                  <Image
+                                    style={{ width: size, height: size }}
+                                    source={require('./assets/map.png')}
+                                  />
+                                );
+                              }, 
+                            }} 
         />
         <Tab.Screen name="TroisiemeEcran" 
                     component={TroisiemeEcran}
@@ -57,14 +58,14 @@ function TabNavigable() {
 
 function DrawerNavigable() {
   return (
-      <Drawer.Navigator initialRouteName="Accueil" >
+      <Drawer.Navigator initialRouteName="Accueil">
         <Drawer.Screen name='Accueil'
                        component={Accueil} 
                        options={{title: 'Accueil',
                                  drawerIcon: ({size, focused, color}) => {
                                   return (
                                       <Image style={{ width: size, height: size }}
-                                                source={require('./assets/home.png')}
+                                             source={require('./assets/home.png')}
                                       />
                                     );
                                   },
@@ -76,7 +77,7 @@ function DrawerNavigable() {
                                  drawerIcon: ({size, focused, color}) => {
                                     return (
                                         <Image style={{ width: size, height: size }}
-                                              source={require('./assets/map.png')}
+                                               source={require('./assets/map.png')}
                                         />
                                       );
                                     }, 
@@ -84,8 +85,8 @@ function DrawerNavigable() {
                         
         />
         <Drawer.Screen name="TroisiemeEcran" 
-                        component={TroisiemeEcran}
-                        options={{ title: 'Troisième Écran' }} 
+                       component={TroisiemeEcran}
+                       options={{ title: 'Troisième Écran'}} 
         />
     </Drawer.Navigator>
   );
@@ -93,19 +94,19 @@ function DrawerNavigable() {
 
 function StackNavigable() {
   return (
-      <Stack.Navigator initialRouteName="Accueil" >
+      <Stack.Navigator initialRouteName="Accueil">
         <Stack.Screen name='Accueil'
-                       component={Accueil} 
-                       options={{title: 'Accueil'}} 
+                      component={Accueil} 
+                      options={{title: 'Accueil'}} 
         />
         <Stack.Screen name="MaMap"
-                       component={MaMapQuiZoomSurGaspe}
-                       options={{ title: 'Ma Map sur Gaspé' }} 
+                      component={MaMapQuiZoomSurGaspe}
+                      options={{title: 'Ma Map sur Gaspé'}} 
                         
         />
         <Stack.Screen name="TroisiemeEcran" 
-                       component={TroisiemeEcran}
-                       options={{ title: 'Troisième Écran' }} 
+                      component={TroisiemeEcran}
+                      options={{title: 'Troisième Écran'}} 
         />
     </Stack.Navigator>
   );

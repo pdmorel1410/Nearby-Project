@@ -4,7 +4,7 @@ import  { View, Text }  from "react-native";
 import { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 
-export default maMap = ({route}) => {
+export default maMap = () => {
     const [isCegepSelected, setCegepSelected] = useState(false)
     const [isAutreSelected, setAutreSelected] = useState(false)
     const [isTroisiemeSelected, setTroisiemeSelected] = useState(false)
