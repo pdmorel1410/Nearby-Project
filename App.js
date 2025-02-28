@@ -37,7 +37,7 @@ function TabNavigable() {
         />
         <Tab.Screen name="MaMap"
                     component={MaMapQuiZoomSurGaspe}
-                    options={{ title: 'Ma Map sur Gaspé',
+                    options={{title: 'Ma Map sur Gaspé',
                       tabBarIcon: ({size, focused, color}) => {
                         return (
                           <Image

@@ -138,7 +138,7 @@ export default maMap = ({route}) => {
 
     function getTroisiemeMarker() {
         return {
-            id : 2,
+            id : 3,
             title: 'Un troisième marqueur',
             coordinates : {
                 latitude: 50.83363,
