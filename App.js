@@ -96,16 +96,7 @@ function StackNavigable() {
       <Stack.Navigator initialRouteName="Accueil" >
         <Stack.Screen name='Accueil'
                        component={Accueil} 
-                       options={{title: 'Accueil',
-                        drawerIcon: ({size, focused, color}) => {
-                          return (
-                            <Image
-                              style={{ width: size, height: size }}
-                              source={require('./assets/home.png')}
-                            />
-                          );
-                        },
-                       }} 
+                       options={{title: 'Accueil'}} 
         />
         <Stack.Screen name="MaMap"
                        component={MaMapQuiZoomSurGaspe}
