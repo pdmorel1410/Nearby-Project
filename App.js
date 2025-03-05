@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Accueil from "./components/Accueil";
 import TroisiemeEcran from './components/TroisiemeEcran';
+import UseEffectWithGPS from "./components/UseEffectWithGPS";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
@@ -88,13 +89,17 @@ function DrawerNavigable() {
                        component={TroisiemeEcran}
                        options={{ title: 'Troisième Écran'}} 
         />
+        <Drawer.Screen name="UseEffectExample" 
+                       component={UseEffectWithGPS}
+                       options={{ title: 'Use Effect Avec GPS'}} 
+        />
     </Drawer.Navigator>
   );
 }
 
 function StackNavigable() {
   return (
-      <Stack.Navigator initialRouteName="Accueil">
+      <Stack.Navigator initialRouteName="Accueil" >
         <Stack.Screen name='Accueil'
                       component={Accueil} 
                       options={{title: 'Accueil'}} 

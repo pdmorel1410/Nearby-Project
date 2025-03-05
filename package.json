@@ -16,7 +16,8 @@
     "react-native-screens": "~4.4.0",
     "react-native-sliders": "^2.0.2",
     "react-native-web": "~0.19.6",
-    "react-native-reanimated": "~3.16.1"
+    "react-native-reanimated": "~3.16.1",
+    "expo-location": "~18.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3"

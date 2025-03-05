@@ -9,6 +9,7 @@ export default maMap = () => {
     const [isAutreSelected, setAutreSelected] = useState(false)
     const [isTroisiemeSelected, setTroisiemeSelected] = useState(false)
     const [markers, setMarkersOnMap] = useState([])
+    const [region, setRegion] = useState()
 
     return (
         <View>
@@ -19,8 +20,20 @@ export default maMap = () => {
                 initialRegion={{
                     latitude: 48.83363,
                     longitude: -64.48376,
-                    latitudeDelta: 20,
-                    longitudeDelta: 20}}
+                    latitudeDelta: 50,
+                    longitudeDelta: 50}}
+                showsUserLocation={true}
+                onUserLocationChange={(event) => {
+                    console.log(event.nativeEvent)
+                    setRegion({
+                        latitude: event.nativeEvent.coordinate.latitude,
+                        longitude: event.nativeEvent.coordinate.longitude,
+                        latitudeDelta: 90,
+                        longitudeDelta: 90
+                    })
+                }}
+                region = {region}
+                zoomEnabled={true}
             >
                 {
                   markers.map((marker, index) => (
