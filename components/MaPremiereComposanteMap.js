@@ -1,8 +1,9 @@
 import MapView, { Marker } from "react-native-maps";
-import  { View, Text }  from "react-native";
+import  { View, Text, ActivityIndicator }  from "react-native";
 /* import Slider from "react-native-sliders"; */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Checkbox from 'expo-checkbox';
+import * as Location from 'expo-location'
 
 export default maMap = () => {
     const [isCegepSelected, setCegepSelected] = useState(false)
@@ -10,6 +11,15 @@ export default maMap = () => {
     const [isTroisiemeSelected, setTroisiemeSelected] = useState(false)
     const [markers, setMarkersOnMap] = useState([])
     const [region, setRegion] = useState()
+
+    useEffect(() => {
+       getPermission()
+    }, [])
+
+    const getPermission = async () => {
+        let {status} =  await Location.requestForegroundPermissionsAsync()
+        console.log('Permission accordé ? : ' + status)
+    }
 
     return (
         <View>
