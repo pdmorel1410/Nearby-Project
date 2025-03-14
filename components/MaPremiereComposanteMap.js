@@ -1,5 +1,5 @@
 import MapView, { Marker } from "react-native-maps";
-import  { View, Text, ActivityIndicator }  from "react-native";
+import  { View, Text }  from "react-native";
 /* import Slider from "react-native-sliders"; */
 import { useState, useEffect } from 'react';
 import Checkbox from 'expo-checkbox';

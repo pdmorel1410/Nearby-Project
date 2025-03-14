@@ -5,7 +5,7 @@ import * as Location from 'expo-location'
 export default UseEffectWithGPS = () => {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
-    const [input, setInput] = useState('Changer!')
+    const [input, setInput] = useState('Texte editable')
     const [isPageLoading, setPageLoading] = useState(true)
 
     useEffect(() => { 
@@ -33,15 +33,25 @@ export default UseEffectWithGPS = () => {
                        justifyContent: 'center' }}
         >
             { isPageLoading ?
-                <ActivityIndicator 
-                    size="large" 
-                /> :
+                <ActivityIndicator size="large" /> 
+              :
                 <>
                     <TextInput 
                         value={input}
                         onChangeText={setInput}
+                        style={{
+                            backgroundColor: "white",
+                            borderColor: "gray",
+                            borderWidth: 1,
+                            borderRadius: 10,
+                            height: 36,
+                            padding: 8,
+                            width: 120
+                          }}
                     />
-                    <Text>{latitude} {longitude}</Text>
+                    <Text style={{
+                            padding: 20
+                          }}>{latitude}, {longitude}</Text>
                 </>
             }
         </View>
