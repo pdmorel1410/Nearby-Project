@@ -10,7 +10,10 @@ export default UseEffectWithGPS = () => {
 
     useEffect(() => { 
         setPageLoading(true)
-        getCurrentLocation().then(() => {
+        getCurrentLocation().then((coords) => {
+            const {latitude, longitude} =  coords
+            setLatitude(latitude)
+            setLongitude(longitude)
             setPageLoading(false)
         })
     }, [input])
@@ -21,10 +24,7 @@ export default UseEffectWithGPS = () => {
         console.log('Permission accordé ? : ' + status)
         const {coords} = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000})
         console.log(coords)
-        const {latitude, longitude} =  coords
-        setLatitude(latitude)
-        setLongitude(longitude)
-        //console.log('Coordonnées actuelles :' + latitude + ', ' + longitude)
+        return  coords
     }
 
     return (
