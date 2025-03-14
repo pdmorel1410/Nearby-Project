@@ -1,4 +1,4 @@
-import  { View, Text, TextInput }  from "react-native"
+import  { View, Text, TextInput, ActivityIndicator }  from "react-native"
 import { useState, useEffect } from 'react'
 import * as Location from 'expo-location'
 
@@ -6,9 +6,13 @@ export default UseEffectWithGPS = () => {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
     const [input, setInput] = useState('Changer!')
+    const [isPageLoading, setPageLoading] = useState(true)
 
-    useEffect(() => {        
-        getCurrentLocation()
+    useEffect(() => { 
+        setPageLoading(true)
+        getCurrentLocation().then(() => {
+            setPageLoading(false)
+        })
     }, [input])
 
     const getCurrentLocation = async () => {
@@ -28,12 +32,18 @@ export default UseEffectWithGPS = () => {
                        alignItems: 'center', 
                        justifyContent: 'center' }}
         >
-            <TextInput 
-                value={input}
-                onChangeText={setInput}
-            />
-            <Text>{latitude}</Text>
-            <Text>{longitude}</Text>
+            { isPageLoading ?
+                <ActivityIndicator 
+                    size="large" 
+                /> :
+                <>
+                    <TextInput 
+                        value={input}
+                        onChangeText={setInput}
+                    />
+                    <Text>{latitude} {longitude}</Text>
+                </>
+            }
         </View>
     );
 }
