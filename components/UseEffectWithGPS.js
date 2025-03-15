@@ -1,5 +1,6 @@
 import  { View, Text, TextInput, ActivityIndicator }  from "react-native"
 import { useState, useEffect } from 'react'
+import { useIsFocused } from '@react-navigation/native'
 import * as Location from 'expo-location'
 
 export default UseEffectWithGPS = () => {
@@ -7,16 +8,19 @@ export default UseEffectWithGPS = () => {
     const [longitude, setLongitude] = useState('')
     const [input, setInput] = useState('Texte editable')
     const [isPageLoading, setPageLoading] = useState(true)
+    const isFocused = useIsFocused()
 
-    useEffect(() => { 
-        setPageLoading(true)
-        getCurrentLocation().then((coords) => {
-            const {latitude, longitude} =  coords
-            setLatitude(latitude)
-            setLongitude(longitude)
-            setPageLoading(false)
-        })
-    }, [input])
+    useEffect(() => {
+        if(isFocused){ 
+            setPageLoading(true)
+            getCurrentLocation().then((coords) => {
+                const {latitude, longitude} =  coords
+                setLatitude(latitude)
+                setLongitude(longitude)
+                setPageLoading(false)
+            })
+        }
+    }, [input, isFocused])
 
     const getCurrentLocation = async () => {
         //Requête pour déterminer si l'application possède les droits d'accéder à la localisation de l'appareil

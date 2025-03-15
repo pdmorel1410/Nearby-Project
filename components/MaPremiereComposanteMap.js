@@ -1,8 +1,9 @@
-import MapView, { Marker } from "react-native-maps";
-import  { View, Text }  from "react-native";
+import MapView, { Marker } from "react-native-maps"
+import  { View, Text }  from "react-native"
+import { useIsFocused } from '@react-navigation/native'
 /* import Slider from "react-native-sliders"; */
-import { useState, useEffect } from 'react';
-import Checkbox from 'expo-checkbox';
+import { useState, useEffect } from 'react'
+import Checkbox from 'expo-checkbox'
 import * as Location from 'expo-location'
 
 export default maMap = () => {
@@ -11,14 +12,17 @@ export default maMap = () => {
     const [isTroisiemeSelected, setTroisiemeSelected] = useState(false)
     const [markers, setMarkersOnMap] = useState([])
     const [region, setRegion] = useState()
+    const [showUserLocation, setshowUserLocation] = useState()
+    const isFocused = useIsFocused()
 
     useEffect(() => {
-       getPermission()
-    }, [])
+        getPermission()
+    }, [isFocused])
 
     const getPermission = async () => {
         let {status} =  await Location.requestForegroundPermissionsAsync()
         console.log('Permission accordé ? : ' + status)
+        setshowUserLocation(status === 'granted' ? true && isFocused : false )
     }
 
     return (
@@ -32,7 +36,7 @@ export default maMap = () => {
                     longitude: -64.48376,
                     latitudeDelta: 50,
                     longitudeDelta: 50}}
-                showsUserLocation={true}
+                showsUserLocation={showUserLocation}
                 onUserLocationChange={(event) => {
                     console.log(event.nativeEvent)
                     setRegion({
@@ -44,6 +48,7 @@ export default maMap = () => {
                 }}
                 region = {region}
                 zoomEnabled={true}
+                loadingEnabled={true}
             >
                 {
                   markers.map((marker, index) => (
@@ -104,8 +109,7 @@ export default maMap = () => {
                         }
                     }          
                 />
-                <Text style = {{
-                      marginLeft: -30}}>Troisième</Text>
+                <Text style={{marginLeft: -30}}>Troisième</Text>
             </View>
         </View>
     ); 
