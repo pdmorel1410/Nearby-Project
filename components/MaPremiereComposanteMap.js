@@ -22,7 +22,7 @@ export default maMap = () => {
     const getPermission = async () => {
         let {status} =  await Location.requestForegroundPermissionsAsync()
         console.log('Permission accordé ? : ' + status)
-        setshowUserLocation(status === 'granted' ? true && isFocused : false )
+        setshowUserLocation(status === 'granted' ? true && isFocused : false)
     }
 
     return (

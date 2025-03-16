@@ -7,17 +7,17 @@ export default UseEffectWithGPS = () => {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
     const [input, setInput] = useState('Texte editable')
-    const [isPageLoading, setPageLoading] = useState(true)
+    const [isPositionLoading, setPositionLoading] = useState(true)
     const isFocused = useIsFocused()
 
     useEffect(() => {
         if(isFocused){ 
-            setPageLoading(true)
+            setPositionLoading(true)
             getCurrentLocation().then((coords) => {
                 const {latitude, longitude} =  coords
                 setLatitude(latitude)
                 setLongitude(longitude)
-                setPageLoading(false)
+                setPositionLoading(false)
             })
         }
     }, [input, isFocused])
@@ -36,7 +36,7 @@ export default UseEffectWithGPS = () => {
                        alignItems: 'center', 
                        justifyContent: 'center' }}
         >
-            { isPageLoading ?
+            { isPositionLoading ?
                 <ActivityIndicator size="large" /> 
               :
                 <>

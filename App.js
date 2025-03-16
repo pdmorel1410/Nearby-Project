@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Accueil from "./components/Accueil";
 import TroisiemeEcran from './components/TroisiemeEcran';
 import UseEffectWithGPS from "./components/UseEffectWithGPS";
+import externalAPIWithAxios  from "./components/externalAPIWithAxios";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
@@ -82,16 +83,15 @@ function DrawerNavigable() {
                                         />
                                       );
                                     }, 
-                                }} 
-                        
-        />
-        <Drawer.Screen name="TroisiemeEcran" 
-                       component={TroisiemeEcran}
-                       options={{ title: 'Troisième Écran'}} 
+                                }}                
         />
         <Drawer.Screen name="UseEffectExample" 
                        component={UseEffectWithGPS}
-                       options={{ title: 'Use Effect Avec GPS'}} 
+                       options={{ title: 'GPS avec Indicateur d\'activité'}} 
+        />
+        <Drawer.Screen name="ExternalAPI" 
+                    component={externalAPIWithAxios}
+                    options={{ title: 'Axios' }} 
         />
     </Drawer.Navigator>
   );
