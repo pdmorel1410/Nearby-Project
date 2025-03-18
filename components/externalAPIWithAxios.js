@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import  { View, Text }  from "react-native";
 import { useIsFocused } from '@react-navigation/native'
 
-export default EcranAPIAxios = () => {
+export default EcranAxios = () => {
     const isFocused = useIsFocused()
 
     const url = 'https://api.open-meteo.com/v1/forecast'
@@ -29,6 +29,3 @@ export default EcranAPIAxios = () => {
         </View>
     );
 }
-
-
-

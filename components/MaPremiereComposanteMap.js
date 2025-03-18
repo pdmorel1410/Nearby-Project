@@ -12,7 +12,7 @@ export default maMap = () => {
     const [isTroisiemeSelected, setTroisiemeSelected] = useState(false)
     const [markers, setMarkersOnMap] = useState([])
     const [region, setRegion] = useState()
-    const [showUserLocation, setshowUserLocation] = useState()
+    const [showsUserLocation, setShowsUserLocation] = useState(false)
     const isFocused = useIsFocused()
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export default maMap = () => {
     const getPermission = async () => {
         let {status} =  await Location.requestForegroundPermissionsAsync()
         console.log('Permission accordé ? : ' + status)
-        setshowUserLocation(status === 'granted' ? true && isFocused : false)
+        setShowsUserLocation(status === 'granted' ? true && isFocused : false)
     }
 
     return (
@@ -36,7 +36,7 @@ export default maMap = () => {
                     longitude: -64.48376,
                     latitudeDelta: 50,
                     longitudeDelta: 50}}
-                showsUserLocation={showUserLocation}
+                showsUserLocation={showsUserLocation}
                 onUserLocationChange={(event) => {
                     console.log(event.nativeEvent)
                     setRegion({
@@ -69,7 +69,7 @@ export default maMap = () => {
             >
                 <Checkbox
                     value={isCegepSelected}
-                    onValueChange = {(value)=>{
+                    onValueChange = {(value) => {
                             setCegepSelected(value)
                             if(!value){
                                 removeIdFromMarkers(1)
@@ -84,7 +84,7 @@ export default maMap = () => {
 
                 <Checkbox
                     value={isAutreSelected}
-                    onValueChange = {(value)=>{
+                    onValueChange = {(value) => {
                             setAutreSelected(value)
                             if(!value){
                                 removeIdFromMarkers(2)
@@ -99,7 +99,7 @@ export default maMap = () => {
 
                 <Checkbox
                     value={isTroisiemeSelected}
-                    onValueChange = {(value)=>{
+                    onValueChange = {(value) => {
                             setTroisiemeSelected(value)
                             if(!value){
                                 removeIdFromMarkers(3)
