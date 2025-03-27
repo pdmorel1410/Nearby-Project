@@ -37,3 +37,6 @@ yarn-error.*
 
 app-example
 package-lock.json
+# react-native-config codegen
+ios/tmp.xcconfig
+.env

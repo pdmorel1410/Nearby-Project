@@ -5,6 +5,7 @@ import Accueil from "./components/Accueil";
 import TroisiemeEcran from './components/TroisiemeEcran';
 import UseEffectWithGPS from "./components/UseEffectWithGPS";
 import externalAPIWithAxios  from "./components/externalAPIWithAxios";
+import placesApiHttp from './components/CallApiPlacesOldVersion';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
@@ -18,43 +19,6 @@ export default function App() {
      <NavigationContainer>
       <DrawerNavigable />
      </NavigationContainer>
-  );
-}
-
-function TabNavigable() {
-  return (
-     <Tab.Navigator initialRouteName="Accueil">
-        <Tab.Screen name='Accueil'
-                    component={Accueil} 
-                    options={{title: 'Accueil',
-                              tabBarIcon: ({size, focused, color}) => {
-                                return (
-                                  <Image
-                                    style={{ width: size, height: size }}
-                                    source={require('./assets/home.png')}
-                                  />
-                                );
-                              },
-                            }} 
-        />
-        <Tab.Screen name="MaMap"
-                    component={MaMapQuiZoomSurGaspe}
-                    options={{title: 'Ma Map sur Gaspé',
-                              tabBarIcon: ({size, focused, color}) => {
-                                return (
-                                  <Image
-                                    style={{ width: size, height: size }}
-                                    source={require('./assets/map.png')}
-                                  />
-                                );
-                              }, 
-                            }} 
-        />
-        <Tab.Screen name="TroisiemeEcran" 
-                    component={TroisiemeEcran}
-                    options={{ title: 'Troisième Écran' }} 
-        />
-        </Tab.Navigator>
   );
 }
 
@@ -92,6 +56,10 @@ function DrawerNavigable() {
         <Drawer.Screen name="ExternalAPI" 
                     component={externalAPIWithAxios}
                     options={{ title: 'Axios' }} 
+        />
+        <Drawer.Screen name="PlacesApiHttp" 
+                    component={placesApiHttp}
+                    options={{ title: 'Places API (HTTP)' }} 
         />
     </Drawer.Navigator>
   );

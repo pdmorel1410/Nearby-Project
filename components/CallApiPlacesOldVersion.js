@@ -6,10 +6,12 @@ import { useIsFocused } from '@react-navigation/native'
 export default EcranAxios = () => {
     const isFocused = useIsFocused()
 
-    const url = 'https://api.open-meteo.com/v1/forecast'
-                    + '?latitude=52.52&longitude=13.41' 
-                    + '&current=temperature_2m,wind_speed_10m' 
-                    /* + '&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m' */
+    const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
+                + '?keyword=cruise'
+                + '&location=-33.8670522%2C151.1957362'
+                + '&radius=1500'
+                + '&type=restaurant'
+                + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
 
     useEffect(() => {
         axios({
@@ -25,7 +27,7 @@ export default EcranAxios = () => {
                        alignItems: 'center', 
                        justifyContent: 'center' }}
         >
-            <Text>Exemple d'appel à un API avec Axios !</Text>
+            <Text>Exemple d'appel http de  l'API Places !</Text>
         </View>
     );
 }
