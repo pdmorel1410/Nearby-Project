@@ -8,22 +8,26 @@ import * as Location from 'expo-location'
 
 export default maMap = () => {
     const [isRestaurantSelected, setRestaurantSelected] = useState(false)
-    /* const [isAutreSelected, setAutreSelected] = useState(false)
-    const [isTroisiemeSelected, setTroisiemeSelected] = useState(false) */
+    const [isCafeSelected, setCafeSelected] = useState(false)
+    const [isCoiffeurSelected, setCoiffeurSelected] = useState(false)
     const [markers, setMarkersOnMap] = useState([])
     const [region, setRegion] = useState()
     const [showsUserLocation, setShowsUserLocation] = useState(false)
-    const isFocused = useIsFocused()
     const [latitude, setLatitude] = useState()
     const [longitude, setLongitude] = useState()
+
+    const isFocused = useIsFocused()
 
     const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
                 + '&radius=1500'
                 + `&location=${latitude}`+'%2C'+`${longitude}`
                 
                 //Cette ligne est à compléter selon les 3 types sélectionnés
-                + `&type=${isRestaurantSelected ? 'restaurant' : '' }`
+                + `&type=${isRestaurantSelected ? 'restaurant,' : '' }` 
+                      + `${isCafeSelected ? 'cafe,' : '' }` 
+                      + `${isCoiffeurSelected ? 'hair_dresser,' : '' }`
                 + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
+                
     useEffect(() => {
         getPermission()
     }, [isFocused])
@@ -86,42 +90,30 @@ export default maMap = () => {
                         }
                     }          
                 />
-                <Text style = {{
-                      marginLeft: -30}}>Restaurant</Text>
+                <Text >Restaurant</Text>
+
+                <Checkbox
+                    value={isCafeSelected}
+                    onValueChange = {(value) => {
+                            setCafeSelected(value)
+                        }
+                    }          
+                />
+                <Text >Café</Text>
+
+                <Checkbox
+                    value={isCoiffeurSelected}
+                    onValueChange = {(value) => {
+                            setCoiffeurSelected(value) 
+                        }
+                    }          
+                />
+                <Text >Coiffeur</Text>
 
                 <Button
                     title="Test URL API"
                     onPress={() => console.log(url)}
                 />
-
-                {/* <Checkbox
-                    value={isAutreSelected}
-                    onValueChange = {(value) => {
-                            
-                            if(!value){
-                                removeIdFromMarkers(2)
-                            } else {
-                                addToMarkers(getAutreMarker())
-                            }
-                        }
-                    }          
-                />
-                <Text style = {{
-                      marginLeft: -30}}>Autre</Text>
-
-                <Checkbox
-                    value={isTroisiemeSelected}
-                    onValueChange = {(value) => {
-                            
-                            if(!value){
-                                removeIdFromMarkers(3)
-                            } else {
-                                addToMarkers(getTroisiemeMarker())
-                            }
-                        }
-                    }          
-                />
-                <Text style={{marginLeft: -30}}>Troisième</Text> */}
             </View>
         </View>
     ); 
@@ -151,47 +143,6 @@ export default maMap = () => {
        // met le nouveau array dans le state, ce qui déclenchera un refresh de la MapView
         // et les markers présents dans le state s'afficheront
         setMarkersOnMap(newMarkers) 
-    }
-
-    function getCegepMarker() {
-        return {
-            id : 1,
-            title: 'Le CEGEP de Gaspé',
-            coordinates : {
-                latitude: 48.83363,
-                longitude: -64.48376,
-            }
-        }
-    }
-    
-    function getAutreMarker() {
-        return {
-            id : 2,
-            title: 'Un marker au hasard',
-            coordinates : {
-                latitude: 49.83363,
-                longitude: -65.48376,
-            }
-        }
-    }
-
-    function getTroisiemeMarker() {
-        return {
-            id : 3,
-            title: 'Un troisième marqueur',
-            coordinates : {
-                latitude: 50.83363,
-                longitude: -66.48376,
-            }
-        }
-    }
-
-    function getMarkerPlaceId() {
-        return {
-            id: 4,
-            Title: 'À vous de trouver',
-            placeId : 'ChIJUbf3iDiuEmsROJxXbhYO7cM'
-        }
     }
 }
 
