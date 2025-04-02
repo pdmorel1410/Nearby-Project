@@ -20,7 +20,8 @@ export default maMap = () => {
     const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
                 + '&radius=1500'
                 + '&location=-33.8670522%2C151.1957362'
-                + '&type=restaurant'
+                //Cette ligne est à compléter selon les 3 types sélectionnés
+                + `&type=${isRestaurantSelected ? 'restaurant' : '' }`
                 + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
 
     useEffect(() => {
