@@ -3,9 +3,8 @@ import  { View, Text }  from "react-native"
 import { useIsFocused } from '@react-navigation/native'
 import { Loader } from "@googlemaps/js-api-loader"
 
-//AIzaSyDAqSwvLgKSjD7VSpjzsGat-eLRZgmUXZ0
 const loader = new Loader({
-    apiKey: "AIzaSyDAqSwvLgKSjD7VSpjzsGat-eLRZgmUXZ0",
+    apiKey: "",
     version: "weekly",
     libraries: ["places"]
   });
