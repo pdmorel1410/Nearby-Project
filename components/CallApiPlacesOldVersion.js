@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import  { View, Text }  from "react-native"
 import { useIsFocused } from '@react-navigation/native'
 
-export default EcranAxios = () => {
+export default EcranApiHttp = () => {
     const isFocused = useIsFocused()
 
     const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
@@ -18,7 +18,8 @@ export default EcranAxios = () => {
             method: 'get',
             url: url,
           }).then((response) => {
-            console.log(response.data);
+            console.log(response.data.results[0].geometry.location.lat);
+            console.log(response.data.results[0].geometry.location.lng);
           });
     }, [isFocused]) 
 

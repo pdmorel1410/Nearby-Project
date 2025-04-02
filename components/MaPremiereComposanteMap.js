@@ -7,13 +7,21 @@ import Checkbox from 'expo-checkbox'
 import * as Location from 'expo-location'
 
 export default maMap = () => {
-    const [isCegepSelected, setCegepSelected] = useState(false)
-    const [isAutreSelected, setAutreSelected] = useState(false)
-    const [isTroisiemeSelected, setTroisiemeSelected] = useState(false)
+    const [isRestaurantSelected, setRestaurantSelected] = useState(false)
+    /* const [isAutreSelected, setAutreSelected] = useState(false)
+    const [isTroisiemeSelected, setTroisiemeSelected] = useState(false) */
     const [markers, setMarkersOnMap] = useState([])
     const [region, setRegion] = useState()
     const [showsUserLocation, setShowsUserLocation] = useState(false)
     const isFocused = useIsFocused()
+    const [latitude, setLatitude] = useState()
+    const [longitude, setLongitude] = useState()
+
+    const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
+                + '&radius=1500'
+                + '&location=-33.8670522%2C151.1957362'
+                + '&type=restaurant'
+                + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
 
     useEffect(() => {
         getPermission()
@@ -39,6 +47,8 @@ export default maMap = () => {
                 showsUserLocation={showsUserLocation}
                 onUserLocationChange={(event) => {
                     console.log(event.nativeEvent)
+                    setLatitude(event.nativeEvent.coordinate.latitude)
+                    setLongitude(event.nativeEvent.coordinate.longitude)
                     setRegion({
                         latitude: event.nativeEvent.coordinate.latitude,
                         longitude: event.nativeEvent.coordinate.longitude,
@@ -58,6 +68,7 @@ export default maMap = () => {
                         title={marker.title}
                     />))
                 }
+
             </ MapView>
             <View 
                 style = {{
@@ -68,24 +79,19 @@ export default maMap = () => {
                     justifyContent: 'space-between'}}
             >
                 <Checkbox
-                    value={isCegepSelected}
+                    value={isRestaurantSelected}
                     onValueChange = {(value) => {
-                            setCegepSelected(value)
-                            if(!value){
-                                removeIdFromMarkers(1)
-                            } else {
-                                addToMarkers(getCegepMarker())
-                            }
+                            setRestaurantSelected(value)
                         }
                     }          
                 />
                 <Text style = {{
-                      marginLeft: -30}}>Cégep</Text>
+                      marginLeft: -30}}>Restaurant</Text>
 
-                <Checkbox
+                {/* <Checkbox
                     value={isAutreSelected}
                     onValueChange = {(value) => {
-                            setAutreSelected(value)
+                            
                             if(!value){
                                 removeIdFromMarkers(2)
                             } else {
@@ -100,7 +106,7 @@ export default maMap = () => {
                 <Checkbox
                     value={isTroisiemeSelected}
                     onValueChange = {(value) => {
-                            setTroisiemeSelected(value)
+                            
                             if(!value){
                                 removeIdFromMarkers(3)
                             } else {
@@ -109,7 +115,7 @@ export default maMap = () => {
                         }
                     }          
                 />
-                <Text style={{marginLeft: -30}}>Troisième</Text>
+                <Text style={{marginLeft: -30}}>Troisième</Text> */}
             </View>
         </View>
     ); 
@@ -171,6 +177,14 @@ export default maMap = () => {
                 latitude: 50.83363,
                 longitude: -66.48376,
             }
+        }
+    }
+
+    function getMarkerPlaceId() {
+        return {
+            id: 4,
+            Title: 'À vous de trouver',
+            placeId : 'ChIJUbf3iDiuEmsROJxXbhYO7cM'
         }
     }
 }

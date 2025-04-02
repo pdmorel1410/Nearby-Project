@@ -6,6 +6,7 @@ import TroisiemeEcran from './components/TroisiemeEcran';
 import UseEffectWithGPS from "./components/UseEffectWithGPS";
 import externalAPIWithAxios  from "./components/externalAPIWithAxios";
 import placesApiHttp from './components/CallApiPlacesOldVersion';
+import placesApi from './components/CallApiPlacesNewVersion';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
@@ -60,6 +61,10 @@ function DrawerNavigable() {
         <Drawer.Screen name="PlacesApiHttp" 
                     component={placesApiHttp}
                     options={{ title: 'Places API (HTTP)' }} 
+        />
+        <Drawer.Screen name="PlacesApi" 
+                    component={placesApi}
+                    options={{ title: 'Places API (Nouvelle)' }} 
         />
     </Drawer.Navigator>
   );

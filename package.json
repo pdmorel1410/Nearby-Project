@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
     "@react-native-community/checkbox": "^0.5.17",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/drawer": "^7.1.1",
