@@ -1,5 +1,5 @@
 import MapView, { Marker } from "react-native-maps"
-import  { View, Text }  from "react-native"
+import  { View, Text, Button }  from "react-native"
 import { useIsFocused } from '@react-navigation/native'
 /* import Slider from "react-native-sliders"; */
 import { useState, useEffect } from 'react'
@@ -19,11 +19,11 @@ export default maMap = () => {
 
     const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
                 + '&radius=1500'
-                + '&location=-33.8670522%2C151.1957362'
+                + `&location=${latitude}`+'%2C'+`${longitude}`
+                
                 //Cette ligne est à compléter selon les 3 types sélectionnés
                 + `&type=${isRestaurantSelected ? 'restaurant' : '' }`
                 + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
-
     useEffect(() => {
         getPermission()
     }, [isFocused])
@@ -88,6 +88,11 @@ export default maMap = () => {
                 />
                 <Text style = {{
                       marginLeft: -30}}>Restaurant</Text>
+
+                <Button
+                    title="Test URL API"
+                    onPress={() => console.log(url)}
+                />
 
                 {/* <Checkbox
                     value={isAutreSelected}
