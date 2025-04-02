@@ -13,14 +13,12 @@ export default maMap = () => {
     const [markers, setMarkersOnMap] = useState([])
     const [region, setRegion] = useState()
     const [showsUserLocation, setShowsUserLocation] = useState(false)
-    const [latitude, setLatitude] = useState()
-    const [longitude, setLongitude] = useState()
 
     const isFocused = useIsFocused()
 
     const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
                 + '&radius=1500'
-                + `&location=${latitude}`+'%2C'+`${longitude}`
+                + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
                 
                 //Cette ligne est à compléter selon les 3 types sélectionnés
                 + `&type=${isRestaurantSelected ? 'restaurant,' : '' }` 
@@ -52,8 +50,6 @@ export default maMap = () => {
                 showsUserLocation={showsUserLocation}
                 onUserLocationChange={(event) => {
                     console.log(event.nativeEvent)
-                    setLatitude(event.nativeEvent.coordinate.latitude)
-                    setLongitude(event.nativeEvent.coordinate.longitude)
                     setRegion({
                         latitude: event.nativeEvent.coordinate.latitude,
                         longitude: event.nativeEvent.coordinate.longitude,
