@@ -122,7 +122,8 @@ export default maMap = () => {
                         //Attendre la Promise et bâtir tous les Markers à partir de chacun des 
                         //résultats de la recherche Nearby.
                         console.log(url)}
-                    disabled={TODO}
+                    // Coder la dynamique qui détermine si le bouton est actif ou non
+                    /* disabled={TODO} */
                 />
             </View>
         </View>
