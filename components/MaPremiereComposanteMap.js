@@ -1,7 +1,7 @@
 import MapView, { Marker } from "react-native-maps"
 import  { View, Text, Button }  from "react-native"
 import { useIsFocused } from '@react-navigation/native'
-/* import Slider from "react-native-sliders"; */
+import Slider from 'react-native-sliders'
 import { useState, useEffect } from 'react'
 import Checkbox from 'expo-checkbox'
 import * as Location from 'expo-location'
@@ -13,17 +13,16 @@ export default maMap = () => {
     const [markers, setMarkersOnMap] = useState([])
     const [region, setRegion] = useState()
     const [showsUserLocation, setShowsUserLocation] = useState(false)
+    const [radius, setRadius] = useState(750)
 
     const isFocused = useIsFocused()
 
     const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
-                + '&radius=1500'
-                + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
-                
-                //Cette ligne est à compléter selon les 3 types sélectionnés
                 + `&type=${isRestaurantSelected ? 'restaurant,' : '' }` 
                       + `${isCafeSelected ? 'cafe,' : '' }` 
                       + `${isCoiffeurSelected ? 'hair_dresser,' : '' }`
+                + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
+                + `&radius=${radius}`
                 + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
                 
     useEffect(() => {
@@ -53,8 +52,8 @@ export default maMap = () => {
                     setRegion({
                         latitude: event.nativeEvent.coordinate.latitude,
                         longitude: event.nativeEvent.coordinate.longitude,
-                        latitudeDelta: 90,
-                        longitudeDelta: 90
+                        latitudeDelta: 50,
+                        longitudeDelta: 50
                     })
                 }}
                 region = {region}
@@ -69,8 +68,16 @@ export default maMap = () => {
                         title={marker.title}
                     />))
                 }
-
             </ MapView>
+            <Slider
+                value={radius}
+                minimumValue={1}
+                maximumValue={1500}
+                step={1} 
+                onValueChange={(value)=>{
+                    setRadius(value[0])
+                }}
+            />
             <View 
                 style = {{
                     width : 270,
@@ -141,67 +148,3 @@ export default maMap = () => {
         setMarkersOnMap(newMarkers) 
     }
 }
-
-
-
-
-
-
-
-
-
- {/* 
-    const [markers, setMarkersOnMap] = useState([])
-const [region, setRegion] = useState()
-   const [zoom, setZoom] = useState(20)
-    <MapView
-                style={{
-                    width: "100%",
-                    height: "90%",
-                }}
-                initialRegion={{
-                    latitude: 48.83363,
-                    longitude: -64.48376,
-                    latitudeDelta: zoom,
-                    longitudeDelta: zoom
-                }}
-                region = {region}
-            >
-                {
-                    markers.map((marker, index) => (
-                        <Marker
-                            key={index}
-                            coordinate={marker.coordinates}
-                            title={marker.title}
-                        />
-                    ))
-                }
-            </ MapView>
-            <Slider
-                value={20}
-                minimumValue={0}
-                maximumValue={20}
-                step={0.1} 
-                onValueChange={(value)=>{
-                    setZoom(value[0])
-                    setRegion(
-                        {latitude: 48.83363,
-                         longitude: -64.48376,
-                         latitudeDelta: zoom,
-                         longitudeDelta: zoom})
-                }}
-            /> */}
-
-/* if(value) {
-    setMarkersOnMap(
-        [{
-            title: 'LE CEGEP DE GASSSPÉ',
-            coordinates : {
-                latitude: 48.83363,
-                longitude: -64.48376,
-            }
-        }]
-    )
-} else {
-    setMarkersOnMap([])
-} */
