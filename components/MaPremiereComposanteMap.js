@@ -116,6 +116,7 @@ export default maMap = () => {
                 <Button
                     title="Test URL API"
                     onPress={() => console.log(url)}
+                    disabled={TODO}
                 />
             </View>
         </View>
