@@ -115,7 +115,13 @@ export default maMap = () => {
 
                 <Button
                     title="Test URL API"
-                    onPress={() => console.log(url)}
+                    onPress={() => 
+                        // TODO :
+                        //récupérer l'url
+                        // à partir de l'instance d'axios, configurer la requête HTTP
+                        //Attendre la Promise et bâtir tous les Markers à partir de chacun des 
+                        //résultats de la recherche Nearby.
+                        console.log(url)}
                     disabled={TODO}
                 />
             </View>
