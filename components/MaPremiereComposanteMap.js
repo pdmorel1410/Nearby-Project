@@ -69,20 +69,30 @@ export default maMap = () => {
                     />))
                 }
             </ MapView>
-            <Slider
-                value={radius}
-                minimumValue={1}
-                maximumValue={1500}
-                step={1} 
-                onValueChange={(value)=>{
-                    setRadius(value[0])
-                }}
-            />
+            <View style = {{
+                    width : 400,
+                    padding: 10,
+                    flexDirection: 'row', 
+                    justifyContent: 'space-between'}}>
+                <Slider
+                    style= {{width: '70%'}}
+                        value={radius}
+                        minimumValue={1}
+                        maximumValue={1500}
+                        step={1} 
+                        onValueChange={(value)=>{
+                            setRadius(value[0])
+                        }}
+                />
+                <Text style={{ marginLeft: -40,
+                               marginTop: 6,
+                               padding: 5
+                }} >Rayon :  {radius}m</Text>
+            </View>
             <View 
                 style = {{
-                    width : 270,
-                    marginLeft: 10,
-                    marginTop:10,
+                    width : 400,
+                    padding: 10,
                     flexDirection: 'row', 
                     justifyContent: 'space-between'}}
             >
@@ -93,7 +103,7 @@ export default maMap = () => {
                         }
                     }          
                 />
-                <Text >Restaurant</Text>
+                <Text style={{ marginLeft: -50}} >Restaurant</Text>
 
                 <Checkbox
                     value={isCafeSelected}
@@ -102,7 +112,7 @@ export default maMap = () => {
                         }
                     }          
                 />
-                <Text >Café</Text>
+                <Text style={{ marginLeft: -50}}>Café</Text>
 
                 <Checkbox
                     value={isCoiffeurSelected}
@@ -111,19 +121,23 @@ export default maMap = () => {
                         }
                     }          
                 />
-                <Text >Coiffeur</Text>
+                <Text style={{ marginLeft: -50}}>Coiffeur</Text>
+            </View>
+            <View style={{padding: 10}}>
+                <Button 
+                        title="Test URL API"
+                        onPress={() => 
+                            console.log(url)}
+                            
+                            // TODO :
 
-                <Button
-                    title="Test URL API"
-                    onPress={() => 
-                        // TODO :
-                        //récupérer l'url
-                        // à partir de l'instance d'axios, configurer la requête HTTP
-                        //Attendre la Promise et bâtir tous les Markers à partir de chacun des 
-                        //résultats de la recherche Nearby.
-                        console.log(url)}
-                    // Coder la dynamique qui détermine si le bouton est actif ou non
-                    /* disabled={TODO} */
+                            //récupérer l'url
+                            // à partir de l'instance d'axios, configurer la requête HTTP
+                            //Attendre la Promise et bâtir tous les Markers à partir de chacun des 
+                            //résultats de la recherche Nearby.
+                            
+                            // Coder la dynamique qui détermine si le bouton est actif ou non
+                            /* disabled={TODO} */
                 />
             </View>
         </View>
