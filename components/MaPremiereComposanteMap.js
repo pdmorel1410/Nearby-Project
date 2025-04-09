@@ -31,10 +31,10 @@ export default maMap = () => {
                 + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
 
     const urlCoiffeur= process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
-    + '&type=hair_dresser'
-    + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
-    + `&radius=${radius}`
-    + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
+                + '&type=hair_dresser'
+                + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
+                + `&radius=${radius}`
+                + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
                 
     useEffect(() => {
         getPermission()
@@ -137,9 +137,12 @@ export default maMap = () => {
             <View style={{padding: 10}}>
                 <Button 
                         title="Test URL API"
-                        onPress={() => 
-                            console.log(url)}
-                            
+                        onPress={() => {
+                                isRestaurantSelected ? console.log(urlRestautrant): ''
+                                isCafeSelected ? console.log(urlCafe) : ''
+                                isCoiffeurSelected ? console.log(urlCoiffeur) : ''
+                            }
+                        }
                             // TODO :
 
                             //récupérer le/les urls
@@ -149,9 +152,10 @@ export default maMap = () => {
                             
                             // Coder la dynamique qui détermine si le bouton est actif ou non
                             /* disabled={TODO} */
-                            
+
                             // Alternative : Ne pas faire de bouton et appeller l'API lorsqu'un type est coché
                             // par l'utilisateur
+                    
                 />
             </View>
         </View>
