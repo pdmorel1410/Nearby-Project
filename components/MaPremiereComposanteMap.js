@@ -17,13 +17,24 @@ export default maMap = () => {
 
     const isFocused = useIsFocused()
 
-    const url = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
-                + `&type=${isRestaurantSelected ? 'restaurant,' : '' }` 
-                      + `${isCafeSelected ? 'cafe,' : '' }` 
-                      + `${isCoiffeurSelected ? 'hair_dresser,' : '' }`
+    //Il faut appeller un URL distincte selon le type coché
+    const urlRestautrant = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
+                + '&type=restaurant'
                 + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
                 + `&radius=${radius}`
                 + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
+
+    const urlCafe = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
+                + '&type=cafe'
+                + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
+                + `&radius=${radius}`
+                + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
+
+    const urlCoiffeur= process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_URL
+    + '&type=hair_dresser'
+    + `&location=${region?.latitude}`+'%2C'+`${region?.longitude}`
+    + `&radius=${radius}`
+    + '&key='+ process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY
                 
     useEffect(() => {
         getPermission()
@@ -131,13 +142,16 @@ export default maMap = () => {
                             
                             // TODO :
 
-                            //récupérer l'url
-                            // à partir de l'instance d'axios, configurer la requête HTTP
-                            //Attendre la Promise et bâtir tous les Markers à partir de chacun des 
-                            //résultats de la recherche Nearby.
+                            //récupérer le/les urls
+                            // Ensuite, à partir de l'instance d'axios, configurer la/les requêtes HTTP
+                            //Attendre la/les Promise et bâtir tous les Markers à partir de chacun des 
+                            //résultats de la/les recherche(s) Nearby.
                             
                             // Coder la dynamique qui détermine si le bouton est actif ou non
                             /* disabled={TODO} */
+                            
+                            // Alternative : Ne pas faire de bouton et appeller l'API lorsqu'un type est coché
+                            // par l'utilisateur
                 />
             </View>
         </View>
