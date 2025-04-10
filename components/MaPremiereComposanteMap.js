@@ -42,7 +42,7 @@ export default maMap = () => {
 
     const getPermission = async () => {
         let {status} =  await Location.requestForegroundPermissionsAsync()
-        console.log('Permission accordé ? : ' + status)
+        console.log('Permission accordée ? : ' + status)
         setShowsUserLocation(status === 'granted' ? isFocused : false)
     }
 
@@ -155,7 +155,6 @@ export default maMap = () => {
 
                             // Alternative : Ne pas faire de bouton et appeller l'API lorsqu'un type est coché
                             // par l'utilisateur
-                    
                 />
             </View>
         </View>
